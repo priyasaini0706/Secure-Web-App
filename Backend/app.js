@@ -16,6 +16,7 @@ app.set("trust proxy", 1);
 // ✅ Define allowed origins
 const allowedOrigins = [
   "http://localhost:3000",
+  "https://securewebapp.netlify.app"
 ];
 
 const corsOptions = {
