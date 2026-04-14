@@ -33,3 +33,50 @@ exports.register = async (req, res) => {
         res.status(500).json({ message: "Something went wrong" });
     }
 };
+
+exports.login = async (req, res) => {
+    const { email, password, otp } = req.body;
+
+    // Account Lockout
+    if (loginAttempts[email] >= 5) {
+        return res.status(403).json({ message: "Account locked. Try later." });
+    }
+
+    const [user] = await db.query(
+        "SELECT * FROM users WHERE email = ?",
+        [email]
+    );
+
+    if (!user) {
+        loginAttempts[email] = (loginAttempts[email] || 0) + 1;
+        return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+        loginAttempts[email] = (loginAttempts[email] || 0) + 1;
+        return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    // MFA (dummy OTP check)
+    if (otp !== "123456") {
+        return res.status(401).json({ message: "Invalid OTP" });
+    }
+
+    loginAttempts[email] = 0;
+
+    const token = jwt.sign(
+        { id: user.id, role: user.role },
+        process.env.JWT_SECRET,
+        { expiresIn: "1h" }
+    );
+
+    res.cookie("token", token, {
+        httpOnly: true,     // Session security
+        secure: true,
+        sameSite: "Strict"
+    });
+
+    res.json({ message: "Login successful" });
+};
