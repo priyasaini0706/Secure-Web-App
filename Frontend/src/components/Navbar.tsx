@@ -10,7 +10,7 @@ const Navbar = () => {
                 >
                     <div className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16">
                         <img
-                            src="/assets/profilePic.png"
+                            src="/assets/swa_logo.png"
                             alt="From Code to Secure"
                             className="h-full w-full object-contain"
                         />
