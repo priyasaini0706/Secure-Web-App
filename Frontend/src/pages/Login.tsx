@@ -9,7 +9,7 @@ const Login = () => {
                 <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Sign in to your account</h2>
             </div>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form action="#" method="POST" className="space-y-6">
+                <form  method="POST" className="space-y-6">
                     <div>
                         <label className="block text-sm/6 font-medium text-gray-900">Email address</label>
                         <div className="mt-2">
@@ -21,7 +21,7 @@ const Login = () => {
                         <div className="flex items-center justify-between">
                             <label className="block text-sm/6 font-medium text-gray-900">Password</label>
                             <div className="text-sm">
-                                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                                <a href="/" className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
                             </div>
                         </div>
                         <div className="mt-2">

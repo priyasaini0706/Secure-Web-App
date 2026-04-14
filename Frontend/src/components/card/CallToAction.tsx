@@ -15,7 +15,7 @@ const CallToAction = () => {
                     </div>
 
                     <div className="order-first h-48 w-full bg-gray-700 sm:order-none sm:h-auto sm:w-1/2 lg:w-3/5">
-                        <img src="https://images.unsplash.com/photo-1505846951821-e25bacf2eccd?auto=format&q=75&fit=crop&crop=top&w=1000&h=500" loading="lazy" alt="photo" className="h-full w-full object-cover object-center" />
+                        <img src="https://images.unsplash.com/photo-1505846951821-e25bacf2eccd?auto=format&q=75&fit=crop&crop=top&w=1000&h=500" loading="lazy" alt="actionpic" className="h-full w-full object-cover object-center" />
                     </div>
                 </div>
             </div>

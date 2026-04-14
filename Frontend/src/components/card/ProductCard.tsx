@@ -4,7 +4,7 @@ const ProductCard = () => {
             <div className="relative">
                 <img
                     src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                    alt="Photo"
+                    alt="PhotoProduct"
                     className="aspect-square w-full rounded-md bg-gray-200 object-cover lg:h-80"
                 />
                 <button

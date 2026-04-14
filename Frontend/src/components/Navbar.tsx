@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const Navbar = () => {
     return (
         <header className="mb-8 border-b">
@@ -17,10 +19,10 @@ const Navbar = () => {
                     </div>
                 </a>
                 <nav className="hidden gap-12 lg:flex 2xl:ml-16">
-                    <a href="1" className="text-lg font-semibold text-indigo-500">Home</a>
-                    <a href="1" className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Collections</a>
-                    <a href="1" className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Sale</a>
-                    <a href="1" className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">About</a>
+                    <Link to={'/'} className="text-lg font-semibold text-indigo-500">Home</Link>
+                    <Link to={'/product'} className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Collections</Link>
+                    <Link to={'/'} className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Sale</Link>
+                    <Link to={'/'} className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">About</Link>
                 </nav>
 
                 <div className="flex divide-x border-r sm:border-l">
@@ -31,12 +33,12 @@ const Navbar = () => {
 
                         <span className="hidden text-xs font-semibold text-gray-500 sm:block">Wishlist</span>
                     </a>
-                    <a href="1" className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-gray-100 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
+                    <Link to={'/login'} className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-gray-100 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                         <span className="hidden text-xs font-semibold text-gray-500 sm:block">Account</span>
-                    </a>
+                    </Link>
                     <a href="1" className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-gray-100 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />

@@ -3,14 +3,14 @@ const CartCard=()=>{
 <div className="py-5 sm:py-8">
                     <div className="flex flex-wrap gap-4 sm:py-2.5 lg:gap-6">
                         <div className="sm:-my-2.5">
-                            <a href="#" className="group relative block h-40 w-24 overflow-hidden rounded-lg bg-gray-100 sm:h-56 sm:w-40">
-                                <img src="https://images.unsplash.com/photo-1612681621979-fffe5920dbe8?auto=format&q=75&fit=crop&w=200" loading="lazy" alt="Photo by Thái An" className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                            <a href="/" className="group relative block h-40 w-24 overflow-hidden rounded-lg bg-gray-100 sm:h-56 sm:w-40">
+                                <img src="https://images.unsplash.com/photo-1612681621979-fffe5920dbe8?auto=format&q=75&fit=crop&w=200" loading="lazy" alt="PhotobyTháiAn" className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
                             </a>
                         </div>
 
                         <div className="flex flex-1 flex-col justify-between">
                             <div>
-                                <a href="#" className="mb-1 inline-block text-lg font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-xl">Top</a>
+                                <a href="/" className="mb-1 inline-block text-lg font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-xl">Top</a>
 
                                 <span className="block text-gray-500">Size: S</span>
                                 <span className="block text-gray-500">Color: White</span>
