@@ -80,3 +80,15 @@ exports.login = async (req, res) => {
 
     res.json({ message: "Login successful" });
 };
+
+
+
+exports.getAdminOrders = async (req, res) => {
+    if (req.user.role !== "admin") {
+        return res.status(403).json({ message: "Access denied" });
+    }
+
+    const orders = await db.query("SELECT * FROM orders");
+
+    res.json(orders);
+};
