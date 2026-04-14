@@ -12,6 +12,7 @@ exports.register = async (req, res) => {
     res.json({ message: "User registered" });
 };
 
+// (SQL Injection)
 exports.login = async (req, res) => {
     const { email, password } = req.body;
     const query = `SELECT * FROM users WHERE email='${email}' AND password='${password}'`;
