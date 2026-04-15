@@ -1,6 +1,6 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 
-// Create connection pool (best practice for production)
+// Create connection pool 
 const db = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -12,14 +12,15 @@ const db = mysql.createPool({
   queueLimit: 0
 });
 
-// Test connection (optional but helpful)
-db.getConnection((err, connection) => {
-  if (err) {
-    console.error('❌ Database connection failed:', err);
-  } else {
-    console.log('✅ MySQL connected successfully');
+// Test connection 
+(async () => {
+  try {
+    const connection = await db.getConnection();
+    console.log('MySQL connected successfully');
     connection.release();
+  } catch (err) {
+    console.error('Database connection failed:', err);
   }
-});
+})();
 
 module.exports = db;
