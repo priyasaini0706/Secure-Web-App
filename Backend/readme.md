@@ -7,6 +7,12 @@ This project shows two versions of a backend controller:
 The purpose is to understand common security problems and how to fix them.
 
 ---
+# Technology Used
+* Nodejs 
+* Express js
+* MYSQL
+* Railway
+
 
 # Vulnerable Controller
 
