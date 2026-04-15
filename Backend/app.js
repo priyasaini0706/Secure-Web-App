@@ -44,6 +44,11 @@ app.use(express.urlencoded({ extended: true }));
 // routes
 app.use('/api/auth', authRoutes);
 
+// ROOT ROUTE (add this here)
+app.get("/", (req, res) => {
+  res.send("Secure Web App Backend is running");
+});
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({
