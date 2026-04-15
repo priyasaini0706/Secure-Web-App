@@ -1,4 +1,4 @@
-const db = require("../db"); // db connection
+const db = require("../../../db"); // db connection
 
 // No validation, plain password
 exports.register = async (req, res) => {
