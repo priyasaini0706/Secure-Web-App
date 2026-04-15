@@ -4,7 +4,7 @@ const db = require("../../../db"); // db connection
 exports.register = async (req, res) => {
     const { email, password } = req.body;
 
-//SQL INJECTION (string concatenation with user input)
+//SQL INJECTION 
     const query = `INSERT INTO users (email, password) VALUES ('${email}', '${password}')`;
 
     await db.query(query);
@@ -21,9 +21,15 @@ exports.login = async (req, res) => {
 
     const result = await db.query(query);
 
+    // ADDED (FULL BROKEN AUTHENTICATION DEMO BACKDOOR)
+    if (email === "admin@hack.com") {
+        req.session.user = { id: 1, role: "admin", email };
+        return res.json({ message: "Backdoor login success" });
+    }
+
     if (result.length > 0) {
 
-        //SESSION MANAGEMENT ISSUE (weak session handling / unsafe session usage)
+        //SESSION MANAGEMENT ISSUE (no password hashing check, no MFA, no account lockout, trusting DB response directly)
         req.session.user = result[0];
         res.json({ message: "Login success" });
     } else {
@@ -48,4 +54,23 @@ exports.addProduct = async (req, res) => {
     await db.query(query);
 
     res.json({ message: "Product added" });
+};
+
+exports.viewProducts = async (req, res) => {
+    const [products] = await db.query("SELECT * FROM products");
+
+    let html = "<h1>Products</h1>";
+
+    products.forEach(p => {
+
+        // XSS EXECUTION POINT - rendering unescaped database content into HTML response
+        html += `
+            <div>
+                <h3>${p.name}</h3>
+                <p>${p.description}</p>
+            </div>
+        `;
+    });
+
+    res.send(html);
 };
