@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const session = require("express-session");
 
 
 const app = express();
@@ -37,6 +38,19 @@ app.use(cors(corsOptions));
 // middlewares
 app.use(morgan('dev'));
 app.use(cookieParser());
+
+// SESSION MANAGEMENT VULNERABILITY (intentionally insecure for OWASP demo)
+// Issues: weak secret, no httpOnly, no secure flag, no expiry, no sameSite
+app.use(session({
+  secret: "weak_secret",      // VULN: hardcoded weak secret
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: false,           // VULN: JS can read the cookie
+    secure: false,             // VULN: sent over HTTP too
+    // no maxAge = session never expires
+  }
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

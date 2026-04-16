@@ -1,3 +1,6 @@
+# SQLite database (auto-created on first run)
+database.sqlite
+
 # Logs
 logs
 *.log
@@ -65,10 +68,8 @@ web_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variable files
-.env
-.env.*
-!.env.example
+# dotenv - .env is safe to commit (no sensitive DB credentials)
+# .env
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

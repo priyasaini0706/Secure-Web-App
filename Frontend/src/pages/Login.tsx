@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { useState } from "react";
+import API_BASE from "../config";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -8,7 +9,7 @@ const Login = () => {
  // (vulnerable login)
     const handleVulnerableLogin = async () => {
         const res = await fetch(
-            "https://secure-web-app-production-d271.up.railway.app/api/auth/vulnerable/login",
+            `${API_BASE}/api/auth/vulnerable/login`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -23,7 +24,7 @@ const Login = () => {
 // (secure login)
     const handleSecureLogin = async () => {
         const res = await fetch(
-            "https://secure-web-app-production-d271.up.railway.app/api/auth/secure/login",
+            `${API_BASE}/api/auth/secure/login`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

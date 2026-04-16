@@ -16,21 +16,21 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
     const { email, password } = req.body;
 
-    //SQL INJECTION VULNERABILITY
-    const query = `SELECT * FROM users WHERE email='${email}' AND password='${password}'`;
-
-    const result = await db.query(query);
-
     // ADDED (FULL BROKEN AUTHENTICATION DEMO BACKDOOR)
     if (email === "admin@hack.com") {
         req.session.user = { id: 1, role: "admin", email };
         return res.json({ message: "Backdoor login success" });
     }
 
-    if (result.length > 0) {
+    //SQL INJECTION VULNERABILITY
+    const query = `SELECT * FROM users WHERE email='${email}' AND password='${password}'`;
+
+    const [rows] = await db.query(query);
+
+    if (rows.length > 0) {
 
         //SESSION MANAGEMENT ISSUE (no password hashing check, no MFA, no account lockout, trusting DB response directly)
-        req.session.user = result[0];
+        req.session.user = rows[0];
         res.json({ message: "Login success" });
     } else {
         res.status(401).json({ message: "Invalid credentials" });
