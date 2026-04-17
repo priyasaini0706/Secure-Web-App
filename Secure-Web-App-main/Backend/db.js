@@ -165,7 +165,7 @@ async function getDb() {
       (8, 'Premium Hoodie', 'Warm and stylish hoodie', 85, 'https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg')
     `);
   }
-  
+
   return dbInstance;
 }
 
@@ -200,7 +200,7 @@ const db = {
 (async () => {
   try {
     await getDb();
-    console.log('✅ SQLite connected successfully (database.sqlite)');
+    console.log('SQLite connected successfully (database.sqlite)');
   } catch (err) {
     console.error('Database connection failed:', err);
   }
