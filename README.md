@@ -212,7 +212,7 @@ Password: anything
 | Backdoor | Hardcoded `admin@hack.com` | Removed entirely |
 | MFA | None | OTP verification step |
 
-**Test 1 — Backdoor:**
+**Test - Backdoor:**
 ```
 Email: admin@hack.com
 Password: anything
