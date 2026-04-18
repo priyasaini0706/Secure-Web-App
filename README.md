@@ -1,22 +1,22 @@
-# Secure Web App — E-Commerce Security Demonstration
+# Secure Web App — E-Commerce Security Demo
 
-A full-stack e-commerce application demonstrating OWASP Top 10 vulnerabilities and their secure implementations.
+## Project Overview
 
-## Overview
+This project is a full-stack e-commerce web application developed as part of the 
+Secure Web Development module at National College of Ireland. 
 
-This project was developed as part of the **Secure Web Development** module at **National College of Ireland**. It presents two parallel backend implementations of an e-commerce application:
+The application demonstrates common web security vulnerabilities and their fixes, 
+aligned with the OWASP Top 10. It includes two versions of the backend:
 
-- 🔴 **Vulnerable Version** — Intentionally insecure for demonstration
-- 🟢 **Secure Version** — Hardened with industry-standard security controls
+- 🔴 **Vulnerable Version** — Intentionally insecure implementation
+- 🟢 **Secure Version** — Hardened implementation with security best practices
 
 ---
 
 ## 🔗 Links
 
-| Resource | Link |
-|----------|------|
-| Live App | https://securewebapp.netlify.app |
-| GitHub | https://github.com/priyasaini0706/Secure-Web-App |
+- **Frontend (Netlify):** https://securewebapp.netlify.app
+- **Backend (Railway):** https://your-railway-url.up.railway.app
 
 ---
 
