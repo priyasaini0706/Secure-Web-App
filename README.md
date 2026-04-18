@@ -122,12 +122,12 @@ PORT=8080
 JWT_SECRET=securewebapp_super_secret_key_2024
 ```
 
-# Start server
+# Start Server
 ```bash
 node server.js
 ```
 
-Expected output:
+Expected Output:
 
 ```
 SQLite connected successfully
@@ -149,7 +149,7 @@ Open browser:
 ```
 http://localhost:3000
 ```
-Expected output:
+Expected Output:
 
 ```
 Compiled successfully!
