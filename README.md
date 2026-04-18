@@ -152,8 +152,6 @@ Expected Output:
 
 - Compiled successfully!
 - Local: http://localhost:3000
-  
-```
 
 ---
 
