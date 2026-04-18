@@ -8,8 +8,8 @@ Secure Web Development module at National College of Ireland.
 The application demonstrates common web security vulnerabilities and their fixes, 
 aligned with the OWASP Top 10. It includes two versions of the backend:
 
-🔴 **Vulnerable Version** — Intentionally insecure implementation
-🟢 **Secure Version** — Hardened implementation with security best practices
+- 🔴 **Vulnerable Version** — Intentionally insecure implementation
+- 🟢 **Secure Version** — Hardened implementation with security best practices
 
 ---
 
@@ -29,6 +29,20 @@ aligned with the OWASP Top 10. It includes two versions of the backend:
 | Database | SQLite |
 | Auth | JWT + bcryptjs |
 | Deployment | Netlify + Railway |
+
+---
+
+## Security Features Implemented
+
+| Vulnerability | Vulnerable Version | Secure Version |
+|--------------|-------------------|----------------|
+| SQL Injection | Raw string queries | Parameterized queries |
+| Broken Authentication | Plain text + backdoor | bcrypt + OTP + lockout |
+| Broken Access Control | No role checks | Role-based middleware |
+| XSS | Unescaped output | xss library sanitization |
+| Session Management | Weak session config | HttpOnly + Secure + SameSite |
+| Brute Force | No protection | Account lockout after 5 attempts |
+| Security Misconfiguration | Generic error handling | Safe error messages + secure config |
 
 ---
 
