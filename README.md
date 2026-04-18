@@ -197,7 +197,7 @@ http://localhost:8080/api/auth/vulnerable/admin/orders
 
 Result: Orders visible (Vulnerable)
 
-Login as normal user and access:
+SECURE: Login as normal user and access:
 
 ```
 /admin
