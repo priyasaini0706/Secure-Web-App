@@ -128,6 +128,7 @@ JWT_SECRET=securewebapp_super_secret_key_2024
 # Step 5 - Start backend
 node server.js
 
+---
 Expected output:
 SQLite connected successfully
 Server running on 8080
