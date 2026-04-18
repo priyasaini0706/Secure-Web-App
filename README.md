@@ -131,7 +131,6 @@ Expected Output:
 
 - SQLite connected successfully
 - Server running on 8080
-```
 
 ---
 
