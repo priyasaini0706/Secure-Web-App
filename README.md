@@ -258,7 +258,7 @@ Password: anything
 
 ---
 
-### Test 5. XSS — Cross-Site Scripting (OWASP A03)
+### Test 5. XSS - Cross-Site Scripting (OWASP A03)
 
 | | Vulnerable | Secure |
 |-|-----------|--------|
