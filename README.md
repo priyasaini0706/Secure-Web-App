@@ -1,6 +1,6 @@
 # Secure Web App — E-Commerce Security Demonstration
 
-> A full-stack e-commerce application demonstrating OWASP Top 10 vulnerabilities and their secure implementations.
+A full-stack e-commerce application demonstrating OWASP Top 10 vulnerabilities and their secure implementations.
 
 ## Overview
 
