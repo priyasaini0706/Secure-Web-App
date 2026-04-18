@@ -181,29 +181,36 @@ Result: Invalid credentials
 
 ---
 
-### Test 3 - Broken Access Control
+### Test 3 — Broken Access Control (OWASP A01:2021)
+---
+Verify whether a **normal (non-admin) user** can access **admin-only resources**.
 
-Login as normal user:
+---
 
-**Use Vulnerable Login**
-```
-Email: vulnuser@test.com
-Pass: 123456
-```
-Now access the below url:
-```
-http://localhost:8080/api/auth/vulnerable/admin/orders
-```
+## Vulnerable Version (Expected to Fail Security)
 
-Result: Orders visible (Vulnerable)
+1. Navigate to the login page:  
+   `http://localhost:3000/login`
 
-SECURE: Login as normal user and access:
+2. Login as a **normal user** using **Vulnerable Login**:
+   - **Email:** `vulnuser@test.com`  
+   - **Password:** `123456`
 
-```
-/admin
-```
+3. After login, access the admin orders endpoint directly in the browser:
+   - `GET http://localhost:8080/api/auth/vulnerable/admin/orders`
 
-Result: Admin access required (Secure)
+**Result:** Orders are visible (unauthorized access allowed).  
+**Conclusion:** Missing role-based authorization checks → **Broken Access Control confirmed**.
+
+## Secure Version (Expected to Enforce Authorization)
+
+1. Login as a **normal user** using **Secure Login**.
+
+2. Attempt to access the admin page:
+   - `GET http://localhost:3000/admin` *(or `/admin` via the application route)*
+
+**Result:** Access denied (“Admin access required” / redirect / 403).  
+**Conclusion:** Role-based access control is enforced → **Secure implementation confirmed**.
 
 ---
 
