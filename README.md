@@ -2,8 +2,6 @@
 
 > A full-stack e-commerce application demonstrating OWASP Top 10 vulnerabilities and their secure implementations.
 
----
-
 ## Overview
 
 This project was developed as part of the **Secure Web Development** module at **National College of Ireland**. It presents two parallel backend implementations of an e-commerce application:
