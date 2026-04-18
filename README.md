@@ -129,9 +129,8 @@ node server.js
 
 Expected Output:
 
-```
-SQLite connected successfully
-Server running on 8080
+- SQLite connected successfully
+- Server running on 8080
 ```
 
 ---
@@ -151,9 +150,9 @@ http://localhost:3000
 ```
 Expected Output:
 
-```
-Compiled successfully!
-Local: http://localhost:3000
+- Compiled successfully!
+- Local: http://localhost:3000
+  
 ```
 
 ---
