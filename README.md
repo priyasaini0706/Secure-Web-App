@@ -183,14 +183,16 @@ Result: Invalid credentials
 
 ### Test 3 - Broken Access Control
 
-Login as normal user and access:
+Login as normal user:
 
 **Use Vulnerable Login**
 ```
 Email: vulnuser@test.com
 Pass: 123456
 ```
-/api/auth/vulnerable/admin/orders
+Now access the below url:
+```
+http://localhost:8080/api/auth/vulnerable/admin/orders
 ```
 
 Result: Orders visible (Vulnerable)
