@@ -1,4 +1,4 @@
-# Secure Web App — E-Commerce Security Demo
+# Secure Web App - E-Commerce Security Demo
 
 ## Project Overview
 
@@ -8,8 +8,8 @@ Secure Web Development module at National College of Ireland.
 The application demonstrates common web security vulnerabilities and their fixes, 
 aligned with the OWASP Top 10. It includes two versions of the backend:
 
-- 🔴 **Vulnerable Version** — Intentionally insecure implementation
-- 🟢 **Secure Version** — Hardened implementation with security best practices
+- 🔴 **Vulnerable Version:** Intentionally insecure implementation
+- 🟢 **Secure Version:** Hardened implementation with security best practices
 
 ---
 
