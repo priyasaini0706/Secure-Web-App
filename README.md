@@ -189,7 +189,7 @@ Login as normal user and access:
 /api/auth/vulnerable/admin/orders
 ```
 
-✅ Orders visible (Vulnerable)
+Result: Orders visible (Vulnerable)
 
 Login as normal user and access:
 
@@ -197,7 +197,7 @@ Login as normal user and access:
 /admin
 ```
 
-❌ Admin access required (Secure)
+Result: Admin access required (Secure)
 
 ---
 
@@ -206,7 +206,7 @@ Login as normal user and access:
 Secure login:
 Enter wrong password 5 times.
 
-✅ Account temporarily locked.
+Result: Account temporarily locked.
 
 ---
 
@@ -216,7 +216,7 @@ Enter wrong password 5 times.
 2. Delete JWT cookie manually (F12 → Application → Cookies)
 3. Refresh dashboard
 
-✅ Access denied.
+Result: Access denied.
 
 ---
 
@@ -250,7 +250,7 @@ Enter wrong password 5 times.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Priya Saini**  
 MSc in Cybersecurity  
