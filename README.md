@@ -1,41 +1,36 @@
-# Secure Web App - E-Commerce Security Demo
+# Secure Web App — E-Commerce Security Demonstration
 
-## Project Overview
-
-This project is a full-stack e-commerce web application developed as part of the Secure Web Development module at National College of Ireland.
-
-The application demonstrates common web security vulnerabilities and their mitigation strategies aligned with the OWASP Top 10.
-
-Two backend versions are implemented:
-
-- 🔴 Vulnerable Version: Intentionally insecure implementation
-- 🟢 Secure Version: Hardened implementation using security best practices
+> A full-stack e-commerce application demonstrating OWASP Top 10 vulnerabilities and their secure implementations.
 
 ---
 
-## Technology Stack
+## Overview
+
+This project was developed as part of the **Secure Web Development** module at **National College of Ireland**. It presents two parallel backend implementations of an e-commerce application:
+
+- 🔴 **Vulnerable Version** — Intentionally insecure for demonstration
+- 🟢 **Secure Version** — Hardened with industry-standard security controls
+
+---
+
+## 🔗 Links
+
+| Resource | Link |
+|----------|------|
+| Live App | https://securewebapp.netlify.app |
+| GitHub | https://github.com/priyasaini0706/Secure-Web-App |
+
+---
+
+## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
 | Frontend | React.js (TypeScript) |
 | Backend | Node.js + Express.js |
 | Database | SQLite |
-| Authentication | JWT + bcryptjs |
-| Deployment | Netlify (Frontend) + Railway (Backend) |
-
----
-
-## Security Features Implemented
-
-| Vulnerability | Vulnerable Version | Secure Version |
-|--------------|-------------------|----------------|
-| SQL Injection | Raw string queries | Parameterized queries |
-| Broken Authentication | Plain text + backdoor | bcrypt + OTP + lockout |
-| Broken Access Control | No role checks | Role-based middleware |
-| XSS | Unescaped output | XSS library sanitization |
-| Session Management | Weak session config | HttpOnly + Secure + SameSite |
-| Brute Force | No protection | Account lockout after 5 attempts |
-| Security Misconfiguration | Generic errors | Safe error handling |
+| Auth | JWT + bcryptjs |
+| Deployment | Netlify + Railway |
 
 ---
 
@@ -43,70 +38,57 @@ Two backend versions are implemented:
 
 ```
 Secure-Web-App/
-│
 ├── backend/
 │   ├── api/
 │   │   ├── Controllers/
+│   │   │   ├── secureController.js
+│   │   │   ├── vulnerableController.js
+│   │   │   ├── product/
+│   │   │   │   ├── secureProductController.js
+│   │   │   │   └── vulnerableProductController.js
+│   │   │   └── user/
+│   │   │       ├── secureUserController.js
+│   │   │       └── vulnerableUserController.js
 │   │   ├── Middleware/
+│   │   │   ├── authMiddleware.js
+│   │   │   └── roleMiddleware.js
 │   │   └── Routes/
+│   │       ├── auth.js
+│   │       ├── product.js
+│   │       ├── user.js
+│   │       └── order.js
 │   ├── db.js
 │   ├── app.js
-│   ├── server.js
-│   └── .env
-│
+│   └── server.js
 └── frontend/
-    ├── src/
-    │   ├── pages/
-    │   ├── components/
-    │   └── context/
+    └── src/
+        ├── pages/
+        ├── components/
+        └── context/
 ```
 
 ---
 
-## Setup Instructions
+## Setup
 
-### Backend Setup
-
+### Backend
 ```bash
-git clone https://github.com/YOUR_USERNAME/Secure-Web-App.git
-cd Secure-Web-App/backend
+cd backend
 npm install
+node server.js
 ```
 
-Create `.env` file:
-
+Create `.env`:
 ```
 PORT=8080
 JWT_SECRET=securewebapp_super_secret_key_2024
 ```
 
-Start server:
-
+### Frontend
 ```bash
-node server.js
-```
-
-Expected output:
-
-```
-SQLite connected successfully
-Server running on 8080
-```
-
----
-
-### Frontend Setup
-
-```bash
-cd Secure-Web-App/frontend
+cd frontend
 npm install
 npm start
-```
-
-Open browser:
-
-```
-http://localhost:3000
 ```
 
 ---
@@ -118,161 +100,173 @@ http://localhost:3000
 | Admin | admin@test.com | 123456 |
 | User | user@test.com | 123456 |
 
-Register both accounts using **Secure Register** before testing.
+> Register both accounts using **Secure Register** before testing.
 
 ---
 
-## Application Features
+## Security Vulnerabilities
 
-### User Features
-- User registration and login
-- Product browsing
-- Product details page
-- Add to cart
-- Place orders
-- View order history
+### 1. SQL Injection (OWASP A03)
 
-### Admin Features
-- Admin dashboard
-- View all orders
-- Product management (CRUD)
-- Role-based access control
+| | Vulnerable | Secure |
+|-|-----------|--------|
+| Implementation | Raw string concatenation | Parameterized queries |
+| Risk | Authentication bypass | Input treated as data only |
 
----
-
-## Security Testing Guide
-
-### Test 1 - SQL Injection
-
-**Vulnerable Login**
-
+**Test:**
 ```
 Email: ' OR 1=1 --
 Password: anything
-Result: Login success
 ```
+- 🔴 Vulnerable result: `Login success`
+- 🟢 Secure result: `Invalid credentials`
 
-**Secure Login**
-
-```
-Email: ' OR 1=1 --
-Password: anything
-Result: Invalid credentials
-```
+**Conclusion:** Parameterized queries completely prevent SQL injection by separating user input from query logic.
 
 ---
 
-### Test 2 - Broken Authentication (Backdoor)
+### 2. Broken Authentication (OWASP A07)
 
-**Vulnerable Login**
+| | Vulnerable | Secure |
+|-|-----------|--------|
+| Passwords | Plain text storage | bcrypt hashing (salt: 10) |
+| Backdoor | Hardcoded `admin@hack.com` | Removed entirely |
+| MFA | None | OTP verification step |
 
+**Test 1 — Backdoor:**
 ```
 Email: admin@hack.com
 Password: anything
-Result: Backdoor login success
 ```
+- 🔴 Vulnerable result: `Backdoor login success`
+- 🟢 Secure result: `Invalid credentials`
 
-**Secure Login**
+**Conclusion:** Removing hardcoded credentials and implementing bcrypt hashing eliminates credential-based authentication bypass.
 
+---
+
+### 3. Broken Access Control (OWASP A01)
+
+| | Vulnerable | Secure |
+|-|-----------|--------|
+| Role check | None | JWT + role middleware |
+| Admin route | Open to all users | Admin only |
+
+**Test:**
+- Login as `user@test.com`
+- Visit: `http://localhost:8080/api/auth/vulnerable/admin/orders`
+
+- 🔴 Vulnerable result: All orders returned with no role verification
+- 🟢 Secure result: `403 Admin access required`
+
+**Conclusion:** Centralized middleware enforces role-based authorization consistently across all protected routes without duplicating logic.
+
+---
+
+### 4. Brute Force Protection (OWASP A07)
+
+| | Vulnerable | Secure |
+|-|-----------|--------|
+| Login attempts | Unlimited | Max 5 attempts |
+| Lockout | None | 15-minute lockout |
+
+**Test:**
+- Enter wrong password 5 times on Secure login
+
+- 🔴 Vulnerable result: No lockout enforced
+- 🟢 Secure result: `Account temporarily locked`
+
+**Conclusion:** Account lockout after repeated failures significantly reduces the risk of brute force credential attacks.
+
+---
+
+### 5. XSS — Cross-Site Scripting (OWASP A03)
+
+| | Vulnerable | Secure |
+|-|-----------|--------|
+| Input handling | Rendered without sanitization | Sanitized using `xss` library |
+| Output | Raw HTML executed | Escaped before display |
+
+**Test:**
 ```
-Same credentials
-Result: Invalid credentials
+Product name: <script>alert('XSS')</script>
 ```
+- 🔴 Vulnerable result: Script executes in browser
+- 🟢 Secure result: Input treated as plain text
+
+**Conclusion:** Input sanitization using the `xss` library prevents malicious scripts from being stored or executed in the browser.
 
 ---
 
-### Test 3 — Broken Access Control (OWASP A01:2021)
----
-Verify whether a **normal (non-admin) user** can access **admin-only resources**.
+### 6. Session Management (OWASP A02)
+
+| | Vulnerable | Secure |
+|-|-----------|--------|
+| Cookie flags | No HttpOnly, No Secure | HttpOnly + Secure + SameSite |
+| Session expiry | None | 1-hour expiration |
+| Logout | No cookie clearance | Server-side cookie clearance |
+
+**Test:**
+- Login securely
+- Open DevTools → Application → Cookies
+- Check `token` cookie properties
+
+- 🔴 Vulnerable result: Cookie accessible via JavaScript, no expiry
+- 🟢 Secure result: HttpOnly flag prevents JS access, expires in 1 hour
+
+**Conclusion:** Secure cookie configuration prevents session hijacking and ensures proper session lifecycle management.
 
 ---
 
-## Vulnerable Version (Expected to Fail Security)
+### 7. Security Misconfiguration (OWASP A05)
 
-1. Navigate to the login page:  
-   `http://localhost:3000/login`
+| | Vulnerable | Secure |
+|-|-----------|--------|
+| Error messages | Raw database errors exposed | Generic safe messages |
+| Secrets | Hardcoded in code | Stored in `.env` |
+| CORS | Open to all | Restricted to allowed origins |
 
-2. Login as a **normal user** using **Vulnerable Login**:
-   - **Email:** `vulnuser@test.com`  
-   - **Password:** `123456`
+**Test:**
+- Trigger an error in vulnerable version
 
-3. After login, access the admin orders endpoint directly in the browser:
-   - `GET http://localhost:8080/api/auth/vulnerable/admin/orders`
+- 🔴 Vulnerable result: `SQLITE_CONSTRAINT: UNIQUE constraint failed`
+- 🟢 Secure result: `Something went wrong`
 
-**Result:** Orders are visible (unauthorized access allowed).  
-**Conclusion:** Missing role-based authorization checks → **Broken Access Control confirmed**.
-
-## Secure Version (Expected to Enforce Authorization)
-
-1. Login as a **normal user** using **Secure Login**.
-
-2. Attempt to access the admin page:
-   - `GET http://localhost:3000/admin` *(or `/admin` via the application route)*
-
-**Result:** Access denied (“Admin access required” / redirect / 403).  
-**Conclusion:** Role-based access control is enforced → **Secure implementation confirmed**.
+**Conclusion:** Proper error handling and environment variable usage prevent sensitive internal information from being exposed to attackers.
 
 ---
 
-### Test 4 - Brute Force Protection
+## Security Requirements Status
 
-Secure login:
-Enter wrong password 5 times.
-
-Result: Account temporarily locked.
-
----
-
-### Test 5 - Session Management
-
-1. Login securely
-2. Delete JWT cookie manually (F12 → Application → Cookies)
-3. Refresh dashboard
-
-Result: Access denied.
+| ID | Requirement | Status | Completion |
+|----|-------------|--------|------------|
+| SR1 | SQL Injection prevention | ✅ Completed | 100% |
+| SR2 | Password hashing | ✅ Completed | 100% |
+| SR3 | Role-based access control | ✅ Completed | 100% |
+| SR4 | Secure session cookies | ✅ Completed | 100% |
+| SR5 | Brute force protection | ✅ Completed | 100% |
+| SR6 | XSS input sanitization | ✅ Completed | 100% |
+| SR7 | Safe error handling | ✅ Completed | 100% |
 
 ---
 
-## Security Improvements Summary
+## Testing Tools
 
-1. Parameterized queries prevent SQL Injection
-2. bcrypt hashing secures passwords
-3. OTP & account lockout prevent brute force attacks
-4. JWT authentication enforces session security
-5. Role-based middleware prevents privilege escalation
-6. Input sanitization prevents XSS
-7. Proper error handling prevents information leakage
-
----
-
-## Testing Tools Used
-
-- Browser DevTools
-- Postman
-- SQLite DB Browser
-- Manual security testing
-
----
-
-## References
-
-- OWASP Top 10: https://owasp.org/www-project-top-ten/
-- bcryptjs: https://www.npmjs.com/package/bcryptjs
-- jsonwebtoken: https://www.npmjs.com/package/jsonwebtoken
-- XSS: https://www.npmjs.com/package/xss
+- Browser DevTools (cookie inspection, network analysis)
+- Postman (API endpoint testing)
+- Manual penetration testing
+- Static code review (SAST)
 
 ---
 
 ## Author
 
-**Priya Saini**  
-MSc in Cybersecurity  
-National College of Ireland  
-Module: Secure Web Development  
-Academic Year: 2026/2027
+**Priya Saini**
+MSc Cybersecurity — National College of Ireland
+Module: Secure Web Development
 
 ---
 
 ## License
 
-This project is for academic purposes only.
+For academic purposes only.
