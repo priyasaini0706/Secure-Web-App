@@ -97,27 +97,57 @@ Secure-Web-App/
 
 ---
 
-## Setup
+## ⚙️ Setup and Installation
 
-### Backend
+### ✅ Prerequisites
+
+Make sure you have installed:
+
+- Node.js (v18 or above)
+- npm
+- Git
+
+---
+
+### ✅ Backend Setup
+
 ```bash
-cd backend
-npm install
-node server.js
-```
+# Step 1 - Clone repository
+git clone https://github.com/yourusername/Secure-Web-App.git
 
-Create `.env`:
-```
+# Step 2 - Navigate to backend
+cd Secure-Web-App/backend
+
+# Step 3 - Install dependencies
+npm install
+
+# Step 4 - Create .env file
 PORT=8080
 JWT_SECRET=securewebapp_super_secret_key_2024
-```
 
-### Frontend
-```bash
-cd frontend
+# Step 5 - Start backend
+node server.js
+
+Expected output:
+SQLite connected successfully
+Server running on 8080
+Frontend Setup
+
+Bash
+# Step 1 - Navigate to frontend
+cd Secure-Web-App/frontend
+
+# Step 2 - Install dependencies
 npm install
+
+# Step 3 - Start frontend
 npm start
-```
+Expected output:
+
+text
+
+Compiled successfully!
+Local: http://localhost:3000
 
 ---
 
