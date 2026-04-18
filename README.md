@@ -184,7 +184,8 @@ Result: Invalid credentials
 ### Test 3 - Broken Access Control
 
 Login as normal user and access:
-
+Email: vulnuser@test.com
+Pass: 123456
 ```
 /api/auth/vulnerable/admin/orders
 ```
