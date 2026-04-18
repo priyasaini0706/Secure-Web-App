@@ -184,6 +184,9 @@ Result: Invalid credentials
 ### Test 3 - Broken Access Control
 
 Login as normal user and access:
+
+**Use Vulnerable Login**
+```
 Email: vulnuser@test.com
 Pass: 123456
 ```
