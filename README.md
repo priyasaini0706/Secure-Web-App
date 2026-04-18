@@ -122,7 +122,7 @@ PORT=8080
 JWT_SECRET=securewebapp_super_secret_key_2024
 ```
 
-# Start Server
+#### Start Server
 ```bash
 node server.js
 ```
