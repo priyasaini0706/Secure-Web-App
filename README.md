@@ -50,33 +50,49 @@ aligned with the OWASP Top 10. It includes two versions of the backend:
 
 ```
 Secure-Web-App/
+│
 ├── backend/
-│   ├── api/
-│   │   ├── Controllers/
-│   │   │   ├── secureController.js
-│   │   │   ├── vulnerableController.js
-│   │   │   ├── product/
-│   │   │   │   ├── secureProductController.js
-│   │   │   │   └── vulnerableProductController.js
-│   │   │   └── user/
-│   │   │       ├── secureUserController.js
-│   │   │       └── vulnerableUserController.js
-│   │   ├── Middleware/
-│   │   │   ├── authMiddleware.js
-│   │   │   └── roleMiddleware.js
-│   │   └── Routes/
-│   │       ├── auth.js
-│   │       ├── product.js
-│   │       ├── user.js
-│   │       └── order.js
-│   ├── db.js
-│   ├── app.js
-│   └── server.js
+│ ├── api/
+│ │ ├── Controllers/
+│ │ │ ├── secureController.js
+│ │ │ ├── vulnerableController.js
+│ │ │ ├── product/
+│ │ │ │ ├── secureProductController.js
+│ │ │ │ └── vulnerableProductController.js
+│ │ │ └── user/
+│ │ │ ├── secureUserController.js
+│ │ │ └── vulnerableUserController.js
+│ │ ├── Middleware/
+│ │ │ ├── authMiddleware.js
+│ │ │ └── roleMiddleware.js
+│ │ └── Routes/
+│ │ ├── auth.js
+│ │ ├── product.js
+│ │ ├── user.js
+│ │ └── order.js
+│ ├── db.js
+│ ├── app.js
+│ ├── server.js
+│ └── .env
+│
 └── frontend/
-    └── src/
-        ├── pages/
-        ├── components/
-        └── context/
+├── src/
+│ ├── pages/
+│ │ ├── Login.tsx
+│ │ ├── SignUp.tsx
+│ │ ├── Dashboard.tsx
+│ │ ├── AdminDashboard.tsx
+│ │ ├── Product.tsx
+│ │ ├── ProductDetail.tsx
+│ │ ├── Cart.tsx
+│ │ └── Orders.tsx
+│ ├── components/
+│ │ ├── Hero.tsx
+│ │ ├── SelectedProduct.tsx
+│ │ └── CallToAction.tsx
+│ └── context/
+│ └── CartContext.tsx
+└── public/
 ```
 
 ---
