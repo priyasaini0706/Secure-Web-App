@@ -111,14 +111,17 @@ Make sure you have installed:
 
 ### ✅ Backend Setup
 
-```bash
+
 # Step 1 - Clone repository
+```bash
 git clone https://github.com/yourusername/Secure-Web-App.git
 
 # Step 2 - Navigate to backend
+```bash
 cd Secure-Web-App/backend
 
 # Step 3 - Install dependencies
+```bash
 npm install
 
 # Step 4 - Create .env file
