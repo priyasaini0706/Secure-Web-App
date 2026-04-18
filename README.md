@@ -165,13 +165,30 @@ Local: http://localhost:3000
 | Admin | admin@test.com | 123456 |
 | User | user@test.com | 123456 |
 
-> Register both accounts using **Secure Register** before testing.
+Register both accounts using **Secure Register** before testing.
+
+---
+## Application Features
+
+### User Features
+- User registration and login
+- Product browsing
+- Product details page
+- Add to cart
+- Place orders
+- View order history
+
+### Admin Features
+- Admin dashboard
+- View all orders
+- Product management (CRUD)
+- Role-based access control
 
 ---
 
-## Security Vulnerabilities
+## Security Testing Guide
 
-### 1. SQL Injection (OWASP A03)
+### Test 1. SQL Injection (OWASP A03)
 
 | | Vulnerable | Secure |
 |-|-----------|--------|
@@ -190,7 +207,7 @@ Password: anything
 
 ---
 
-### 2. Broken Authentication (OWASP A07)
+### Test 2. Broken Authentication (OWASP A07)
 
 | | Vulnerable | Secure |
 |-|-----------|--------|
@@ -210,7 +227,7 @@ Password: anything
 
 ---
 
-### 3. Broken Access Control (OWASP A01)
+### Test 3. Broken Access Control (OWASP A01)
 
 | | Vulnerable | Secure |
 |-|-----------|--------|
@@ -228,7 +245,7 @@ Password: anything
 
 ---
 
-### 4. Brute Force Protection (OWASP A07)
+### Test 4. Brute Force Protection (OWASP A07)
 
 | | Vulnerable | Secure |
 |-|-----------|--------|
@@ -245,7 +262,7 @@ Password: anything
 
 ---
 
-### 5. XSS — Cross-Site Scripting (OWASP A03)
+### Test 5. XSS — Cross-Site Scripting (OWASP A03)
 
 | | Vulnerable | Secure |
 |-|-----------|--------|
@@ -263,7 +280,7 @@ Product name: <script>alert('XSS')</script>
 
 ---
 
-### 6. Session Management (OWASP A02)
+### Test 6. Session Management (OWASP A02)
 
 | | Vulnerable | Secure |
 |-|-----------|--------|
@@ -283,7 +300,7 @@ Product name: <script>alert('XSS')</script>
 
 ---
 
-### 7. Security Misconfiguration (OWASP A05)
+### Test 7. Security Misconfiguration (OWASP A05)
 
 | | Vulnerable | Secure |
 |-|-----------|--------|
@@ -301,17 +318,15 @@ Product name: <script>alert('XSS')</script>
 
 ---
 
-## Security Requirements Status
+## Security Improvements Summary
 
-| ID | Requirement | Status | Completion |
-|----|-------------|--------|------------|
-| SR1 | SQL Injection prevention | ✅ Completed | 100% |
-| SR2 | Password hashing | ✅ Completed | 100% |
-| SR3 | Role-based access control | ✅ Completed | 100% |
-| SR4 | Secure session cookies | ✅ Completed | 100% |
-| SR5 | Brute force protection | ✅ Completed | 100% |
-| SR6 | XSS input sanitization | ✅ Completed | 100% |
-| SR7 | Safe error handling | ✅ Completed | 100% |
+1. Parameterized queries prevent SQL Injection
+2. bcrypt hashing secures passwords
+3. OTP & account lockout prevent brute force attacks
+4. JWT authentication enforces session security
+5. Role-based middleware prevents privilege escalation
+6. Input sanitization prevents XSS
+7. Proper error handling prevents information leakage
 
 ---
 
@@ -324,14 +339,25 @@ Product name: <script>alert('XSS')</script>
 
 ---
 
+## References
+
+- OWASP Top 10: https://owasp.org/www-project-top-ten/
+- bcryptjs: https://www.npmjs.com/package/bcryptjs
+- jsonwebtoken: https://www.npmjs.com/package/jsonwebtoken
+- XSS: https://www.npmjs.com/package/xss
+
+---
+
 ## Author
 
-**Priya Saini**
-MSc Cybersecurity — National College of Ireland
-Module: Secure Web Development
+**Priya Saini** 
+MSc in Cybersecurity  
+National College of Ireland  
+Module: Secure Web Development  
+Academic Year: 2026/2027
 
 ---
 
 ## License
 
-For academic purposes only.
+This project is for academic purposes only.
