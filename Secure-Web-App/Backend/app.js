@@ -10,8 +10,19 @@ const orderRoutes = require("./api/Routes/order");
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://securewebapp.netlify.app"
+];
+
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,              // ✅ MUST be true for cookies
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
