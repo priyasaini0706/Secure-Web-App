@@ -10,11 +10,6 @@ const orderRoutes = require("./api/Routes/order");
 
 const app = express();
 
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://securewebapp.netlify.app"
-];
-
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
