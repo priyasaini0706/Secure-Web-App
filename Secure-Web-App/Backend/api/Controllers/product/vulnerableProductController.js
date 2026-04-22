@@ -1,15 +1,17 @@
 const db = require("../../../db");
 
-// CREATE (Already existed but moved here)
+// Quick add product - note: this version doesn't sanitize inputs
 exports.addProduct = async (req, res) => {
-    const { name, description } = req.body;
+    const { name, description, price, image } = req.body;
 
-    const query = `INSERT INTO products (name, description) VALUES ('${name}', '${description}')`;
+    // Directly inserting values for demonstration purposes
+    const query = `INSERT INTO products (name, description, price, image) VALUES ('${name}', '${description}', ${price || 0}, '${image || ''}')`;
 
     await db.query(query);
 
-    res.json({ message: "Product added (vulnerable)" });
+    res.json({ message: "Item added to catalog (legacy mode)" });
 };
+
 
 // READ
 exports.getProducts = async (req, res) => {
@@ -17,20 +19,21 @@ exports.getProducts = async (req, res) => {
     res.json(products);
 };
 
-// UPDATE (SQL Injection + No Auth)
+// Update product without sanitization
 exports.updateProduct = async (req, res) => {
     const { id } = req.params;
-    const { name, description } = req.body;
+    const { name, description, price, image } = req.body;
 
+    // Using string interpolation for the update query
     const query = `
         UPDATE products 
-        SET name='${name}', description='${description}' 
+        SET name='${name}', description='${description}', price=${price || 0}, image='${image || ''}'
         WHERE id=${id}
     `;
 
     await db.query(query);
 
-    res.json({ message: "Product updated (vulnerable)" });
+    res.json({ message: "Item updated (legacy mode)" });
 };
 
 // DELETE (No Role Check)

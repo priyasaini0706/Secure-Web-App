@@ -27,3 +27,18 @@ exports.updateProfile = async (req, res) => {
 
     res.json({ message: "Profile updated securely" });
 };
+
+// DELETE profile (own account only)
+exports.deleteProfile = async (req, res) => {
+    const userId = req.user.id;
+
+    // First delete associated orders to maintain integrity
+    await db.query("DELETE FROM orders WHERE user_id = ?", [userId]);
+    
+    // Then delete the user
+    await db.query("DELETE FROM users WHERE id = ?", [userId]);
+
+    // Clear the session cookie
+    res.clearCookie("token");
+    res.json({ message: "Account deleted successfully" });
+};

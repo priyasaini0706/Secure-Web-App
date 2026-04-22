@@ -127,6 +127,11 @@ async function getDb() {
       user_id    INTEGER,
       product_id INTEGER,
       quantity   INTEGER DEFAULT 1,
+      customer_name TEXT DEFAULT '',
+      address    TEXT DEFAULT '',
+      contact    TEXT DEFAULT '',
+      payment_method TEXT DEFAULT 'account',
+      status     TEXT DEFAULT 'Pending',
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (user_id)    REFERENCES users(id),
       FOREIGN KEY (product_id) REFERENCES products(id)
@@ -134,13 +139,31 @@ async function getDb() {
   `);
 
   // ✅ Fix schema if columns are missing (for existing databases)
-  const columns = await dbInstance.all("PRAGMA table_info(products)");
-  const columnNames = columns.map(c => c.name);
-  if (!columnNames.includes('price')) {
+  const productColumns = await dbInstance.all("PRAGMA table_info(products)");
+  const productColumnNames = productColumns.map(c => c.name);
+  if (!productColumnNames.includes('price')) {
     await dbInstance.exec("ALTER TABLE products ADD COLUMN price REAL DEFAULT 0");
   }
-  if (!columnNames.includes('image')) {
+  if (!productColumnNames.includes('image')) {
     await dbInstance.exec("ALTER TABLE products ADD COLUMN image TEXT DEFAULT ''");
+  }
+
+  const orderColumns = await dbInstance.all("PRAGMA table_info(orders)");
+  const orderColumnNames = orderColumns.map(c => c.name);
+  if (!orderColumnNames.includes('customer_name')) {
+    await dbInstance.exec("ALTER TABLE orders ADD COLUMN customer_name TEXT DEFAULT ''");
+  }
+  if (!orderColumnNames.includes('address')) {
+    await dbInstance.exec("ALTER TABLE orders ADD COLUMN address TEXT DEFAULT ''");
+  }
+  if (!orderColumnNames.includes('contact')) {
+    await dbInstance.exec("ALTER TABLE orders ADD COLUMN contact TEXT DEFAULT ''");
+  }
+  if (!orderColumnNames.includes('payment_method')) {
+    await dbInstance.exec("ALTER TABLE orders ADD COLUMN payment_method TEXT DEFAULT 'account'");
+  }
+  if (!orderColumnNames.includes('status')) {
+    await dbInstance.exec("ALTER TABLE orders ADD COLUMN status TEXT DEFAULT 'Pending'");
   }
 
   // ✅ Make admin
