@@ -27,10 +27,6 @@ exports.register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Parameterized query (SQL Injection fix)
-        // await db.query(
-        //     "INSERT INTO users (email, password) VALUES (?, ?)",
-        //     [email, hashedPassword]
-        // );
 
         const role = email === "admin@test.com" ? "admin" : "user";
 
