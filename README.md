@@ -304,6 +304,10 @@ Product name: <script>alert('XSS')</script>
 | Secrets | Hardcoded in code | Stored in `.env` |
 | CORS | Open to all | Restricted to allowed origins |
 
+---
+
+Try to signup with the user credentilas which already exists such as user@test.com
+
 **Test:**
 - Trigger an error in vulnerable version
 
