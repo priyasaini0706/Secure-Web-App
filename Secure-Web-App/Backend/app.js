@@ -12,8 +12,7 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://secure-web-app.netlify.app",
-  "https://secure-web-app-production-d271.up.railway.app"
+  "https://securewebapp.netlify.app"
 ];
 
 const corsOptions = {
