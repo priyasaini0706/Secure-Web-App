@@ -10,11 +10,6 @@ const orderRoutes = require("./api/Routes/order");
 
 const app = express();
 
-// Allow ALL origins for vulnerable routes (intentionally insecure)
-app.use("/api/auth/vulnerable", cors());
-app.use("/api/products/vulnerable", cors());
-app.use("/api/orders/vulnerable", cors());
-
 // Define allowed origins
 const allowedOrigins = [
   "http://localhost:3000",
@@ -36,10 +31,6 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"]
 };
 
-// Apply secure CORS ONLY to secure routes
-app.use("/api/auth/secure", cors(corsOptions));
-app.use("/api/products/secure", cors(corsOptions));
-app.use("/api/orders/secure", cors(corsOptions));
 
 app.use(cors(corsOptions));
 
