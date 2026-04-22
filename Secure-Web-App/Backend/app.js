@@ -13,7 +13,7 @@ const app = express();
 // ✅ Define allowed origins
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://securewebapp.netlify.app/",
+  "https://securewebapp.netlify.app",
   "https://secure-web-app-production-d271.up.railway.app"
 ];
 
