@@ -10,7 +10,12 @@ const orderRoutes = require("./api/Routes/order");
 
 const app = express();
 
-// ✅ Define allowed origins
+// Allow ALL origins for vulnerable routes (intentionally insecure)
+app.use("/api/auth/vulnerable", cors());
+app.use("/api/products/vulnerable", cors());
+app.use("/api/orders/vulnerable", cors());
+
+// Define allowed origins
 const allowedOrigins = [
   "http://localhost:3000",
   "https://securewebapp.netlify.app",
