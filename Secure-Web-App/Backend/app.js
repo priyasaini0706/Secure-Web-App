@@ -10,6 +10,14 @@ const orderRoutes = require("./api/Routes/order");
 
 const app = express();
 
+// ✅ Define allowed origins
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://secure-web-app.netlify.app",
+  "https://secure-web-app-production-d271.up.railway.app"
+];
+
+// CORS options
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
@@ -45,13 +53,6 @@ app.use("/api/orders", orderRoutes);
 
 
 app.set("trust proxy", 1);
-
-// ✅ Define allowed origins
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://secure-web-app.netlify.app",
-  "https://secure-web-app-production-d271.up.railway.app"
-];
 
 
 // middlewares
