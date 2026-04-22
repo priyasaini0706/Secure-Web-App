@@ -31,10 +31,15 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true,              // ✅ MUST be true for cookies
+  credentials: true,              //  MUST be true for cookies
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 };
+
+// Apply secure CORS ONLY to secure routes
+app.use("/api/auth/secure", cors(corsOptions));
+app.use("/api/products/secure", cors(corsOptions));
+app.use("/api/orders/secure", cors(corsOptions));
 
 app.use(cors(corsOptions));
 
