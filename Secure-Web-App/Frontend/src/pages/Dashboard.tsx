@@ -13,7 +13,7 @@ interface Order {
 }
 
 const Dashboard = () => {
-    const { user: profile, loading, logout } = useAuth();
+    const { user: profile, loading } = useAuth();
     const [orders, setOrders] = useState<Order[]>([]);
     const [ordersLoading, setOrdersLoading] = useState(true);
 
