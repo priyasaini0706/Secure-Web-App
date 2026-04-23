@@ -8,15 +8,15 @@ Secure Web Development module at National College of Ireland.
 The application demonstrates common web security vulnerabilities and their fixes, 
 aligned with the OWASP Top 10. It includes two versions of the backend:
 
-- 🔴 **Vulnerable Version:** Intentionally insecure implementation
-- 🟢 **Secure Version:** Hardened implementation with security best practices
+- **Vulnerable Version:** Intentionally insecure implementation
+- **Secure Version:** Hardened implementation with security best practices
 
 ---
 
-## 🔗 Links
+## Links
 
 - **Frontend (Netlify):** https://securewebapp.netlify.app
-- **Backend (Railway):** https://your-railway-url.up.railway.app
+- **Backend (Railway):** https://secure-web-app-production-d271.up.railway.app/
 
 ---
 
@@ -216,8 +216,8 @@ Password: anything
 Email: admin@hack.com
 Password: anything
 ```
-- 🔴 Vulnerable result: `Backdoor login success`
-- 🟢 Secure result: `Invalid credentials`
+- Vulnerable result: `Backdoor login success`
+- Secure result: `Invalid credentials`
 
 **Conclusion:** Removing hardcoded credentials and implementing bcrypt hashing eliminates credential-based authentication bypass.
 
@@ -234,8 +234,8 @@ Password: anything
 - Login as `user@test.com`
 - Visit: `http://localhost:8080/api/auth/vulnerable/admin/orders`
 
-- 🔴 Vulnerable result: All orders returned with no role verification
-- 🟢 Secure result: `403 Admin access required`
+- Vulnerable result: All orders returned with no role verification
+- Secure result: `403 Admin access required`
 
 **Conclusion:** Centralized middleware enforces role-based authorization consistently across all protected routes without duplicating logic.
 
@@ -251,8 +251,8 @@ Password: anything
 **Test:**
 - Enter wrong password 5 times on Secure login
 
-- 🔴 Vulnerable result: No lockout enforced
-- 🟢 Secure result: `Account temporarily locked`
+- Vulnerable result: No lockout enforced
+- Secure result: `Account temporarily locked`
 
 **Conclusion:** Account lockout after repeated failures significantly reduces the risk of brute force credential attacks.
 
@@ -269,8 +269,8 @@ Password: anything
 ```
 Product name: <script>alert('XSS')</script>
 ```
-- 🔴 Vulnerable result: Script executes in browser
-- 🟢 Secure result: Input treated as plain text
+- Vulnerable result: Script executes in browser
+- Secure result: Input treated as plain text
 
 **Conclusion:** Input sanitization using the `xss` library prevents malicious scripts from being stored or executed in the browser.
 
@@ -289,8 +289,8 @@ Product name: <script>alert('XSS')</script>
 - Open DevTools → Application → Cookies
 - Check `token` cookie properties
 
-- 🔴 Vulnerable result: Cookie accessible via JavaScript, no expiry
-- 🟢 Secure result: HttpOnly flag prevents JS access, expires in 1 hour
+- Vulnerable result: Cookie accessible via JavaScript, no expiry
+- Secure result: HttpOnly flag prevents JS access, expires in 1 hour
 
 **Conclusion:** Secure cookie configuration prevents session hijacking and ensures proper session lifecycle management.
 
@@ -311,8 +311,8 @@ Try to signup with the user credentilas which already exists such as user@test.c
 **Test:**
 - Trigger an error in vulnerable version
 
-- 🔴 Vulnerable result: `SQLITE_CONSTRAINT: UNIQUE constraint failed`
-- 🟢 Secure result: `Something went wrong`
+- Vulnerable result: `SQLITE_CONSTRAINT: UNIQUE constraint failed`
+- Secure result: `Something went wrong`
 
 **Conclusion:** Proper error handling and environment variable usage prevent sensitive internal information from being exposed to attackers.
 
