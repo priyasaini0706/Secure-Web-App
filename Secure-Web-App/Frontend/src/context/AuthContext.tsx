@@ -29,7 +29,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 method: "GET",
                 credentials: "include" // Important for session cookies
             });
-            
+
             if (res.ok) {
                 const data = await res.json();
                 setUser(data);

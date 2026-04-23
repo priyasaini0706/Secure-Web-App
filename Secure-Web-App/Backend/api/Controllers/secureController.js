@@ -95,13 +95,14 @@ exports.login = async (req, res) => {
         { expiresIn: "1h" }
     );
 
-    res.cookie("token", token, {
-        httpOnly: true,     // Session security
-        secure: false,
-        sameSite: "Lax",
-        maxAge: 60 * 60 * 1000 // session expiry
-    });
+    const isProduction = process.env.NODE_ENV === "production";
 
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: isProduction,              // true on Railway (HTTPS required for sameSite: none)
+        sameSite: isProduction ? "none" : "lax",  // "none" needed for cross-origin (Netlify -> Railway)
+        maxAge: 60 * 60 * 1000
+    });
     res.json({ message: "Login successful" });
 };
 

@@ -1,49 +1,48 @@
 import { Link } from "react-router";
 import { useState } from "react";
 import API_BASE from "../config";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { refreshProfile } = useAuth();
 
-    // (vulnerable login)
+    // VULNERABLE LOGIN — SQL Injection + Broken Auth + Backdoor demo
     const handleVulnerableLogin = async () => {
-        const res = await fetch(
-            `${API_BASE}/api/auth/vulnerable/login`,
-            {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password })
-            }
-        );
+        const res = await fetch(`${API_BASE}/api/auth/vulnerable/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include", // needed so session cookie is saved cross-origin with Railway
+            body: JSON.stringify({ email, password }),
+        });
 
         const data = await res.json();
         alert("Vulnerable: " + data.message);
     };
 
-    // (secure login)
+    // SECURE LOGIN — JWT + bcrypt + MFA + account lockout
     const handleSecureLogin = async () => {
-        const res = await fetch(
-            `${API_BASE}/api/auth/secure/login`,
-            {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include", // IMPORTANT for cookies
-                body: JSON.stringify({ email, password, otp: "123456" })
-            }
-        );
+        const res = await fetch(`${API_BASE}/api/auth/secure/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include", // IMPORTANT: needed to receive httpOnly JWT cookie cross-origin
+            body: JSON.stringify({ email, password, otp: "123456" }),
+        });
 
         const data = await res.json();
 
         if (res.ok) {
             alert("Secure: " + data.message);
+            // Refresh auth context BEFORE redirecting so dashboard loads correctly
+            await refreshProfile();
             window.location.href = "/dashboard";
         } else {
             alert(data.message);
         }
     };
-    return (
 
+    return (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img src="/assets/swa_logo.png" alt="FromCodeToSecure" className="mx-auto h-16 w-auto" />
@@ -70,7 +69,6 @@ const Login = () => {
                         </div>
                     </div>
 
-
                     <div className="flex gap-4">
                         <button type="button" onClick={handleVulnerableLogin} className="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold text-white">Vulnerable</button>
                         <button type="button" onClick={handleSecureLogin} className="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold text-white">Secure</button>
@@ -83,8 +81,7 @@ const Login = () => {
                 </p>
             </div>
         </div>
-
-    )
-}
+    );
+};
 
 export default Login;
